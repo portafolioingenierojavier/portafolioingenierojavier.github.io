@@ -3,47 +3,963 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luis Javier — Desarrollador Odoo</title>
+  <title>Luis Javier — Desarrollador Odoo & Arquitecto ERP</title>
+  <meta name="description" content="Luis Javier — Desarrollador Odoo, Arquitecto ERP, Python Warrior. Automatizando negocios con código elegante." />
+  <meta name="theme-color" content="#7B2FBE" />
   <style>
+    /* ═══════════════════════════════════════════════════════════
+       ⚔️  PORTAFOLIO ÉPICO — LUIS JAVIER
+       Estética: Cyberpunk (Purple → Pink → Cyan)
+       ═══════════════════════════════════════════════════════════ */
+
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --purple: #7B2FBE;
+      --pink: #EC4899;
+      --cyan: #4CC9F0;
+      --dark: #0D1117;
+      --darker: #010409;
+      --card: #161B22;
+      --border: #21262D;
+      --text: #E6EDF3;
+      --text-dim: #8B949E;
+      --gradient: linear-gradient(135deg, var(--purple), var(--pink), var(--cyan));
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--purple) var(--dark);
+    }
+
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #0D1117;
-      color: #FFFFFF;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Partículas de fondo ── */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--pink);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-particle linear infinite;
+    }
+
+    @keyframes float-particle {
+      0%   { opacity: 0; transform: translateY(100vh) scale(0); }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.8; }
+      100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+    }
+
+    /* ── Glow cursor ── */
+    .cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,47,190,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+    }
+
+    /* ── Navegación ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav .nav-links a:hover { color: var(--pink); }
+
+    nav .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--pink);
+      transition: width 0.3s;
+    }
+
+    nav .nav-links a:hover::after { width: 100%; }
+
+    /* ── Secciones ── */
+    section {
+      position: relative;
+      z-index: 2;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 6rem 2rem;
     }
-    h1 {
-      font-size: 3rem;
-      background: linear-gradient(135deg, #7B2FBE, #EC4899, #4CC9F0);
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      text-align: center;
+      align-items: center;
+    }
+
+    #hero .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(123, 47, 190, 0.15);
+      border: 1px solid rgba(123, 47, 190, 0.4);
+      color: var(--pink);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    #hero .badge .dot {
+      width: 8px;
+      height: 8px;
+      background: #22C55E;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+
+    #hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    #hero h1 .gradient-text {
+      background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
+      background-clip: text;
     }
-    p { color: #BBBBBB; font-size: 1.2rem; margin-bottom: 2rem; }
-    .links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .links a {
-      color: #EC4899;
+
+    #hero .subtitle {
+      font-family: 'Fira Code', monospace;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    #hero .typing-line {
+      font-family: 'Fira Code', monospace;
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      color: var(--cyan);
+      min-height: 1.5em;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    #hero .typing-line .cursor {
+      animation: blink-cursor 1s step-end infinite;
+    }
+
+    @keyframes blink-cursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    #hero .cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
       text-decoration: none;
-      border: 1px solid #7B2FBE;
-      padding: 0.6rem 1.5rem;
-      border-radius: 8px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 0 25px rgba(123, 47, 190, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(123, 47, 190, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--pink);
+      border: 1.5px solid var(--purple);
+    }
+
+    .btn-outline:hover {
+      background: rgba(123, 47, 190, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* ── ABOUT ── */
+    #about { min-height: auto; }
+
+    .section-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: var(--pink);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .terminal-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      background: var(--darker);
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .terminal-dot.red { background: #FF5F56; }
+    .terminal-dot.yellow { background: #FFBD2E; }
+    .terminal-dot.green { background: #27C93F; }
+
+    .terminal-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-left: 0.5rem;
+    }
+
+    .terminal-body {
+      padding: 1.2rem 1.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      line-height: 2;
+    }
+
+    .terminal-body .key { color: var(--cyan); }
+    .terminal-body .val { color: var(--pink); }
+    .terminal-body .comment { color: var(--text-dim); font-style: italic; }
+
+    .info-cards {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
       transition: all 0.3s;
     }
-    .links a:hover { background: #7B2FBE; color: white; }
+
+    .info-card:hover {
+      border-color: var(--purple);
+      box-shadow: 0 0 20px rgba(123, 47, 190, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .info-card .ic-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card .ic-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-card .ic-desc {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    /* ── SKILLS ── */
+    #skills { min-height: auto; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .skill-category:hover {
+      border-color: var(--purple);
+      transform: translateY(-3px);
+    }
+
+    .skill-cat-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-bar {
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-bar .sb-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-bar .sb-name { font-weight: 500; }
+    .skill-bar .sb-pct { color: var(--text-dim); font-family: 'Fira Code', monospace; font-size: 0.8rem; }
+
+    .skill-bar .sb-track {
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-bar .sb-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--gradient);
+      width: 0;
+      transition: width 1.5s ease-out;
+    }
+
+    /* ── SERVICES ── */
+    #services { min-height: auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 16px;
+    }
+
+    .service-card:hover::before { opacity: 0.05; }
+    .service-card:hover { border-color: var(--purple); transform: translateY(-5px); }
+
+    .service-card .sc-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-card .sc-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card .sc-desc {
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact { min-height: auto; text-align: center; }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.9rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--purple);
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(123, 47, 190, 0.2);
+    }
+
+    .contact-link .cl-icon { font-size: 1.3rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    footer .heart {
+      color: var(--pink);
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.15); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.1); }
+    }
+
+    /* ── Animaciones ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav .nav-links { gap: 1rem; }
+      nav .nav-links a { font-size: 0.8rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      section { padding: 5rem 1.2rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0.8rem 1rem; }
+      nav .nav-links { display: none; }
+      .cta-group { flex-direction: column; align-items: center; }
+    }
   </style>
 </head>
 <body>
-  <h1>⚔️ Luis Javier</h1>
-  <p>Desarrollador Odoo · Arquitecto ERP · Python Warrior</p>
-  <div class="links">
-    <a href="https://github.com/portafolioingenierojavier">GitHub</a>
-    <a href="mailto:ingenieroinformaticojavier@proton.me">Email</a>
-    <a href="https://linkedin.com/in/tu-usuario">LinkedIn</a>
-  </div>
+
+  <!-- Partículas de fondo -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Glow del cursor -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- NAVEGACIÓN                                                 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <nav>
+    <div class="logo">⚔️ luis-javier</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- HERO                                                       -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="container">
+      <div class="badge">
+        <span class="dot"></span>
+        Disponible para colaborar
+      </div>
+      <h1>
+        Hola, soy<br/>
+        <span class="gradient-text">Luis Javier</span>
+      </h1>
+      <p class="subtitle">Desarrollador Odoo · Arquitecto ERP · Python Warrior</p>
+      <p class="typing-line">
+        <span id="typingText"></span><span class="cursor">▌</span>
+      </p>
+      <div class="cta-group">
+        <a href="#contact" class="btn btn-primary">💬 Contáctame</a>
+        <a href="https://github.com/portafolioingenierojavier" target="_blank" class="btn btn-outline">🐙 GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SOBRE MÍ                                                   -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container fade-in">
+      <p class="section-label">&lt;about&gt;</p>
+      <h2 class="section-title">Sobre Mí</h2>
+
+      <div class="about-grid">
+        <!-- Terminal card -->
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">profile.yml</span>
+          </div>
+          <div class="terminal-body">
+            <span class="key">nombre</span>: <span class="val">"Luis Javier"</span><br/>
+            <span class="key">rol</span>: <span class="val">"Desarrollador Odoo & Arquitecto ERP"</span><br/>
+            <span class="key">modo</span>: <span class="val">🔥 Always in BUILD mode</span><br/>
+            <span class="key">filosofía</span>: <span class="val">"Código limpio, negocio primero"</span><br/>
+            <span class="key">combustible</span>: <span class="val">☕ Café industrial</span><br/>
+            <span class="key">superpoder</span>: <span class="val">"Caos → Flujos automatizados"</span><br/>
+            <span class="comment"># 24/7 coding, 24/7 learning</span>
+          </div>
+        </div>
+
+        <!-- Info cards -->
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="ic-icon">🔭</div>
+            <div class="ic-title">Trabajando en</div>
+            <div class="ic-desc">Módulos de Odoo — ventas, inventario, RRHH, facturación...</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">🌱</div>
+            <div class="ic-title">Aprendiendo</div>
+            <div class="ic-desc">Integraciones avanzadas con APIs y Odoo.sh</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">👯</div>
+            <div class="ic-title">Buscando</div>
+            <div class="ic-desc">Colaborar en proyectos open source de Odoo y ERP</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">⚡</div>
+            <div class="ic-title">Fun fact</div>
+            <div class="ic-desc">Convierto procesos de negocio en código mientras tomo café ☕</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SKILLS                                                     -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="skills">
+    <div class="container fade-in">
+      <p class="section-label">&lt;skills&gt;</p>
+      <h2 class="section-title">Arsenal Tecnológico</h2>
+
+      <div class="skills-grid">
+        <!-- Backend & ERP -->
+        <div class="skill-category">
+          <div class="skill-cat-title">🛡️ Backend & ERP</div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">Python</span>
+              <span class="sb-pct">90%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">Odoo (ORM, Views, API)</span>
+              <span class="sb-pct">95%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">PostgreSQL</span>
+              <span class="sb-pct">85%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">XML / QWeb</span>
+              <span class="sb-pct">88%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="88"></div></div>
+          </div>
+        </div>
+
+        <!-- DevOps -->
+        <div class="skill-category">
+          <div class="skill-cat-title">⚙️ DevOps & Herramientas</div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">Docker & Compose</span>
+              <span class="sb-pct">85%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">Git & GitHub</span>
+              <span class="sb-pct">80%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">Linux</span>
+              <span class="sb-pct">75%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">GitHub Actions / CI</span>
+              <span class="sb-pct">70%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="70"></div></div>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="skill-category">
+          <div class="skill-cat-title">🎨 Frontend</div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">JavaScript</span>
+              <span class="sb-pct">70%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="70"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">HTML5</span>
+              <span class="sb-pct">85%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">CSS3</span>
+              <span class="sb-pct">75%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="sb-header">
+              <span class="sb-name">Odoo QWeb Templates</span>
+              <span class="sb-pct">90%</span>
+            </div>
+            <div class="sb-track"><div class="sb-fill" data-width="90"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SERVICIOS                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="services">
+    <div class="container fade-in">
+      <p class="section-label">&lt;services&gt;</p>
+      <h2 class="section-title">Lo Que Hago</h2>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="sc-icon">🛡️</span>
+          <div class="sc-title">Desarrollo de Módulos Odoo</div>
+          <div class="sc-desc">Models, vistas, reports, workflows, API — módulos completos a medida para cualquier área de negocio.</div>
+        </div>
+        <div class="service-card">
+          <span class="sc-icon">🔄</span>
+          <div class="sc-title">Integraciones & APIs</div>
+          <div class="sc-desc">Conexión con pasarelas de pago, CRMs, marketplaces, servicios web. REST, SOAP, webhooks.</div>
+        </div>
+        <div class="service-card">
+          <span class="sc-icon">🚀</span>
+          <div class="sc-title">Deploy & DevOps</div>
+          <div class="sc-desc">Dockerización de Odoo, CI/CD con Odoo.sh, configuración de servidores production-ready.</div>
+        </div>
+        <div class="service-card">
+          <span class="sc-icon">📊</span>
+          <div class="sc-title">Personalización de ERP</div>
+          <div class="sc-desc">Adaptar Odoo a los flujos reales de negocio. Ventas, inventario, RRHH, facturación, contabilidad.</div>
+        </div>
+        <div class="service-card">
+          <span class="sc-icon">🐛</span>
+          <div class="sc-title">Debug & Optimización</div>
+          <div class="sc-desc">Resolución de bugs, optimización de queries, migración de datos, tuning de rendimiento.</div>
+        </div>
+        <div class="service-card">
+          <span class="sc-icon">📖</span>
+          <div class="sc-title">Consultoría Técnica</div>
+          <div class="sc-desc">Análisis de requisitos, diseño de arquitectura, auditoría de código, formación de equipos.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- CONTACTO                                                   -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container fade-in">
+      <p class="section-label">&lt;contact&gt;</p>
+      <h2 class="section-title">Conecta Conmigo</h2>
+      <p style="color: var(--text-dim); max-width: 500px; margin: 0 auto;">
+        ¿Tienes un proyecto Odoo en mente? ¿Necesitas un módulo custom? ¿O simplemente quieres charlar de Python y café? 💌
+      </p>
+
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/luis-javier-espi%C3%B1osa-cuti%C3%A9-174703363/" target="_blank" class="contact-link">
+          <span class="cl-icon">💼</span> LinkedIn
+        </a>
+        <a href="https://github.com/portafolioingenierojavier" target="_blank" class="contact-link">
+          <span class="cl-icon">🐙</span> GitHub
+        </a>
+        <a href="mailto:ingenieroinformaticojavier@proton.me" class="contact-link">
+          <span class="cl-icon">📧</span> ProtonMail
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FOOTER                                                     -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <footer>
+    <p>Hecho con ☕, 🐍 y <span class="heart">❤️</span> por <strong>Luis Javier</strong></p>
+    <p style="margin-top:0.3rem; font-family:'Fira Code',monospace; font-size:0.8rem; color:var(--purple);">
+      «El código es poesía, y los negocios son mi musa.»
+    </p>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- JAVASCRIPT                                                 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <script>
+    // ── Typing Effect ──
+    const phrases = [
+      '🛡️ Automatizando negocios con Odoo',
+      '🐍 Python es mi lenguaje de batalla',
+      '🐳 Dockerizando el mundo ERP',
+      '☕ Café + Código = Magia',
+      '🚀 Siempre empujando los límites',
+      '💡 De proceso de negocio a código elegante',
+      '🛡️ Módulos custom que transforman empresas',
+    ];
+
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let deleting = false;
+    const typingEl = document.getElementById('typingText');
+
+    function typeLoop() {
+      const current = phrases[phraseIdx];
+      if (!deleting) {
+        typingEl.textContent = current.substring(0, charIdx + 1);
+        charIdx++;
+        if (charIdx === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 2000);
+          return;
+        }
+        setTimeout(typeLoop, 50);
+      } else {
+        typingEl.textContent = current.substring(0, charIdx - 1);
+        charIdx--;
+        if (charIdx === 0) {
+          deleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          setTimeout(typeLoop, 400);
+          return;
+        }
+        setTimeout(typeLoop, 25);
+      }
+    }
+
+    typeLoop();
+
+    // ── Partículas ──
+    const particlesEl = document.getElementById('particles');
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (8 + Math.random() * 15) + 's';
+      p.style.animationDelay = (Math.random() * 10) + 's';
+      p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+      const colors = ['#7B2FBE', '#EC4899', '#4CC9F0'];
+      p.style.background = colors[Math.floor(Math.random() * 3)];
+      particlesEl.appendChild(p);
+    }
+
+    // ── Cursor Glow ──
+    const glow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', (e) => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+
+    // ── Scroll Fade-In ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Animar skill bars dentro de esta sección
+          entry.target.querySelectorAll('.sb-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Nav scroll spy ──
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 200) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? '#EC4899' : '';
+      });
+    });
+  </script>
+
 </body>
 </html>
